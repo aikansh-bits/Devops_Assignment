@@ -9,7 +9,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning repository...'
-                git credentialsId: '6102de68-ebf3-4296-8dae-0ac426361d35', url: 'https://github.com/aikansh-bits/Devops_Assignment'
+                git branch: 'main',
+                    credentialsId: '6102de68-ebf3-4296-8dae-0ac426361d35',
+                    url: 'https://github.com/aikansh-bits/Devops_Assignment'
             }
         }
 
@@ -30,7 +32,6 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Simulating deployment to staging...'
-                // Replace this with real deployment commands like SSH, SCP, etc.
                 sh 'echo Deploying to staging server...'
             }
         }
@@ -44,7 +45,6 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                // Replace this with actual production deployment steps
                 sh 'echo Deploying to production server...'
             }
         }
