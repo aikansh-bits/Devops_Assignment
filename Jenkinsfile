@@ -18,21 +18,21 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building with Maven...'
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Deploy to Staging') {
             steps {
                 echo 'Simulating deployment to staging...'
-                sh 'echo Deploying to staging server...'
+                bat 'echo Deploying to staging server...'
             }
         }
 
@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                sh 'echo Deploying to production server...'
+                bat 'echo Deploying to production server...'
             }
         }
     }
