@@ -32,7 +32,9 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Simulating deployment to staging...'
-                bat 'echo Deploying to staging server...'
+                bat 'echo Copying build to staging environment...'
+                bat 'if not exist staging mkdir staging'
+                bat 'copy target\\*.jar staging\\'
             }
         }
 
@@ -45,13 +47,15 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                bat 'echo Deploying to production server...'
+                bat 'if not exist production mkdir production'
+                bat 'copy target\\*.jar production\\'
             }
         }
     }
 
     post {
         success {
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             echo 'Pipeline finished successfully!'
         }
         failure {
